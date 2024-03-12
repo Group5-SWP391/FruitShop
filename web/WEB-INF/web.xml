@@ -157,10 +157,7 @@
         <servlet-name>SliderAction</servlet-name>
         <servlet-class>controller.SliderAction</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SalesTrendServlet</servlet-name>
-        <servlet-class>controller.SalesTrendServlet</servlet-class>
-    </servlet>
+    
     <servlet>
         <servlet-name>CartContactController</servlet-name>
         <servlet-class>controller.CartContactController</servlet-class>
@@ -297,6 +294,10 @@
         <servlet-name>checkoutVnpay</servlet-name>
         <servlet-class>controller.checkoutVnpay</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaleDashboard</servlet-name>
+        <servlet-class>controller.SaleDashboard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SliderList</servlet-name>
         <url-pattern>/sliderlist</url-pattern>
@@ -317,10 +318,7 @@
         <servlet-name>ForgotPasswordController</servlet-name>
         <url-pattern>/ForgotPasswordController</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SalesTrendServlet</servlet-name>
-        <url-pattern>/SalesTrendServlet</url-pattern>
-    </servlet-mapping>
+   
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/ResetPasswordController</url-pattern>
@@ -500,6 +498,10 @@
     <servlet-mapping>
         <servlet-name>checkoutVnpay</servlet-name>
         <url-pattern>/checkoutVnpay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaleDashboard</servlet-name>
+        <url-pattern>/SaleDashboard</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

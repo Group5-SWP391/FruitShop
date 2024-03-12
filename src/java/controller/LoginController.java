@@ -59,8 +59,8 @@ public class LoginController extends HttpServlet {
             session.setMaxInactiveInterval(7200);
             switch (a.getRole().getRoleID()) {
                 case 1 -> response.sendRedirect("admindashboard");
-                case 5,4 -> response.sendRedirect("mkt-dashboard");
-                case 3 -> response.sendRedirect("SalesTrendServlet");
+                case 3 -> response.sendRedirect("mkt-dashboard");
+                case 4,5 -> response.sendRedirect("SaleDashboard");
                 default -> response.sendRedirect("home");
             }
         }
