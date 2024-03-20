@@ -262,8 +262,9 @@
                                 <input class="fullName" type="text" name="email" id="email" value="${requestScope.acc.email}" readonly>
 
                             </div>
-                            <div class="input-box">
-                                <div class="child-input">
+                             <div class="input-box" style="    flex-direction: row;
+                                     ">
+                                    <div class="child-input" style="    margin-right: 12px;">
                                     <span>Gender</span>
                                     <select class="gender" name="gender" id="">
                                         <option value="1">Male</option>

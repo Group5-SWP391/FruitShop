@@ -5,7 +5,6 @@
 package controller;
 
 import dal.FeedbackDAO;
-import dal.SettingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -231,8 +230,13 @@ public class FeedbackController extends HttpServlet {
         try {
             int status = Integer.parseInt(request.getParameter("status").substring(request.getParameter("status").length()-1));
             int id = Integer.parseInt(request.getParameter("status").substring(0,request.getParameter("status").length()-1));
-            f.updateFeedback(id, status);
-            new SettingDAO().mappingToSetting(id, status, "Feedback");
+            if(status == 0){
+                f.updateFeedback(id, 0);
+            }
+            if(status == 1){
+                f.updateFeedback(id, 1);
+            }
+            
         } catch (Exception e) {
         }
         

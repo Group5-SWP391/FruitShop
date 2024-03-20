@@ -41,9 +41,6 @@
                                 <li class="navbar-blog-list-item">
                                     <a class="navbar-blog-item-link" href="<c:if test="${sessionScope.acc!=null}">CartDetailController</c:if><c:if test="${sessionScope.acc==null}">LoginController</c:if>">Cart</a>
                                     </li>
-                                    <li class="navbar-blog-list-item">
-                                        <a class="navbar-blog-item-link" href="url">Checkout</a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -64,7 +61,7 @@
                             </li>
                         <c:if test="${sessionScope.acc==null}">
                             <li class="navbar-list-item">
-                                <a href="Login.jsp">Login</a>
+                                <a href="LoginController">Login</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.acc!=null}">
@@ -75,6 +72,9 @@
                                     <li class="header__navbar-user-item">
                                         <a href="userprofile?id=${sessionScope.acc.getAccID()}" class="header__navbar-user-item-link">Profile</a>
                                     </li>
+                                    <li class="header__navbar-user-item">
+                                        <a href="myorder" class="header__navbar-user-item-link">My Order</a>
+                                    </li>
                                     <li class="header__navbar-user-item header__navbar-user-item--separate">
                                         <a href="logout" class="header__navbar-user-item-link">Logout</a>
                                     </li>
@@ -82,6 +82,7 @@
                             </li>
                         </c:if>
                     </ul>
+
                 </nav>
             </div>
         </section>
@@ -237,17 +238,15 @@
                         </div>
                         <div class="cart-buyBtn">
                             <c:if test="${sessionScope.acc != null}">
-                                <button onclick="cartBtnclick()" type="submit" class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button> 
+                                <button style="width: 50%;" onclick="cartBtnclick()" type="submit" class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button> 
                                 <input type="hidden" name="productId" value="${productDetail.getProductID()}">
                                 <input type="hidden" name="action" value="addCart">
                                 <input type="hidden" name="Saleprice" value="${productDetail.getSalePrice()}">
                                 <input type="hidden" name="Rootprice" value="${productDetail.getMainPrice()}">
-                                <button onclick="buyBtnclick()" type="submit" class="buy-btn">Buy Now</button>
                             </c:if>
                             </form>
                             <c:if test="${sessionScope.acc == null}">
                                 <button onclick="window.location.href = 'Login.jsp'"  class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>
-                                <button onclick="window.location.href = 'Login.jsp'"  class="buy-btn">Buy Now</button>
                             </c:if>
                         </div>
                     </div>
@@ -256,56 +255,43 @@
                 <div class="description-review-container">
                     <div class="des-rev-navbar">
                         <button class="des tab-item active">Description</button>
-                        <button class="rev tab-item">Reviews (0)</button>
+                        <button class="rev tab-item">Reviews (${countF})</button>
                     </div>
                     <div class="description-container tab-pane active">
                         <span class="descri-title">${productDetail.getDiscription()}</span>
                     </div>
                     <div style="display: none;" class="reviews-container tab-pane">
                         <div class="cmt-container">
-                            <div class="cmtOfUser">
-                                <div class="user-img">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
-                                         alt="">
-                                </div>
-                                <div class="user-infor">
-                                    <div class="cmt-rating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-regular fa-star"></i>
+                            <c:forEach var="f" items="${listf}">
+                                <div class="cmtOfUser">
+                                    <div class="user-img">
+                                        <img src="/img/${f.getImg()}"
+                                             alt="">
                                     </div>
-                                    <div class="user-detail">
-                                        <div class="name-date">
-                                            <span class="userName">David Alexon</span>
-                                            <div class="cmtLine"></div>
-                                            <span class="postDate">October 01, 2023</span>
-                                            <button class="replyBtn"><i class="fa-solid fa-reply"></i> Reply</button>
+                                    <div class="user-infor">
+                                        <div class="cmt-rating">
+                                            <c:forEach begin="1" end="${f.getRating()}" step="1">
+                                                <i style="color: #9fe252;" class="fa-solid fa-star"></i>
+                                            </c:forEach>
+                                            <c:forEach begin="${f.getRating()}" end="4" step="1">
+                                                <i class="fa-sharp fa-regular fa-star" style="color: #000000;"></i>
+                                            </c:forEach>
                                         </div>
-                                        <div class="cmt-content">
-                                            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci
-                                                quibusdam
-                                                id aliquid. Saepe, ipsum dolores ullam dicta, illo veniam dolorem, molestiae
-                                                iusto doloribus ipsa minima quaerat quo dolore minus sunt.</span>
+                                        <div class="user-detail">
+                                            <div class="name-date">
+                                                <span class="userName">${f.getAccName()}</span>
+                                                <!--                                                <div class="cmtLine"></div>
+                                                                                                <span class="postDate">October 01, 2023</span>
+                                                                                                                                            <button class="replyBtn"><i class="fa-solid fa-reply"></i> Reply</button>-->
+                                            </div>
+                                            <div class="cmt-content">
+                                                <span>${f.getContent()}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="user-rating">
-                                <span>Your Ratings</span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                            <div class="writeCmt-box">
-                                <span>Comments</span>
-                                <textarea class="cmt-input" rows="5" type="text" name="cmt" id=""></textarea>
-                            </div>
+                            </c:forEach>
                         </div>
-                        <button class="submit-cmt">Submit Request</button>
                     </div>
                     <h3>Lasted Products</h3>
                     <div class="list-products">

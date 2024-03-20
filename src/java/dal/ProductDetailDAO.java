@@ -4,9 +4,15 @@
  */
 package dal;
 
+import static dal.MyDAO.con;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Feedback;
 import model.ProductList;
+import model.FbProDEtai;
 
 /**
  *
@@ -33,7 +39,7 @@ public class ProductDetailDAO extends MyDAO {
         return null;
     }
 
-        public int getOrderId(int AccID) {
+    public int getOrderId(int AccID) {
         try {
             String sql = "select OrderID\n"
                     + "from mydb.`order`\n"
@@ -143,6 +149,26 @@ public class ProductDetailDAO extends MyDAO {
         } catch (Exception e) {
         }
         return 0;
+    }
+
+    public List<FbProDEtai> listFeedback(int productId) {
+        try {
+            String sql = "select f.FeedbackID, a.AccImg, a.Username, f.Content, f.Rating\n"
+                    + "from mydb.feedback f join mydb.account a on f.AccID = a.AccID\n"
+                    + "where f.ProductID = ? and f.IsActive = 1";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, productId);
+            rs = ps.executeQuery();
+            List<FbProDEtai> list = new ArrayList<>();
+            while (rs.next()) {
+                FbProDEtai f = new FbProDEtai(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                list.add(f);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
     public static void main(String[] args) {

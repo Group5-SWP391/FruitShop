@@ -45,87 +45,137 @@
         </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <header class="main-header">
-      <!-- Logo -->
-      <a href="index2.html" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
-      </a>
+      <div class="row">
+       <header class="main-header">
 
-      <!-- Header Navbar: style can be found in header.less -->
-      <nav class="navbar navbar-static-top">
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
+                <!-- Logo -->
+                <a href="index2.html" class="logo">
+                    <span class="logo-lg"><b>Marketing</b></span>
+                </a>
 
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px"> 
-                <img src="./img/user1_image.jpg" class="user-image" alt="User Image" style="object-fit: cover;">
-                <span class="hidden-xs">Alexander Pierce</span>
-              </a>
-              <ul class="dropdown-menu" style="margin-right: 40px">
-                <!-- User image -->
-                <li class="user-header" style="height: inherit;">
-                  <img src="./img/user1_image.jpg" class="img-circle" alt="User Image" style="object-fit: cover;width: 40px;height: 40px;">
-                  <p>
-                    Alexander Pierce
-                  </p>
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
 
-    <div class="row">
 
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="./img/user1_image.jpg" class="img-circle" alt="User Image" style="object-fit: cover;width: 40px;height: 40px;">
-            </div>
-            <div class="pull-left info">
-              <p style="color: white">Alexander Pierce</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
 
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-              </a>
-            </li>
 
-            <li class="active treeview">
-              <a href="ProductListMKT">
-                <i class="fa fa-th"></i> <span>Product List</span>
-              </a>
-            </li>
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px">
+                                    <img src="./img/${sessionScope.acc.accImg}" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">${sessionScope.acc.username}</span>
+                                </a>
+                                <ul class="dropdown-menu"  style="margin-right: 40px">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
 
-           
+                                        <p>
+                                            ${sessionScope.acc.username}
+                                            
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
 
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        
+
+                                        <div class="pull-right">
+                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                            
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>${sessionScope.acc.username}</p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li class="active treeview">
+                            <a href="mkt-dashboard">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="ManagerBlog">
+                                <i class="fa fa-th"></i> <span>Manage Post</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">new</small>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="sliderlist">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Manage Sliders</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">new</small>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="feedback">
+                                <i class="fa fa-comment" aria-hidden="true"></i> <span>Manage Feedbacks</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">new</small>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="customerlist">
+                                <i class="fa fa-th"></i> <span>Manage Customers</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">new</small>
+                                </span>
+                            </a>
+                        </li>
+
+
+
+
+
+                        <li class="active treeview"><a href="ProductListMKT"><i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Manage Products</span></a></li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
       <div class="col-10">
                 <form action="ProductDetailMKT" method="post" style="margin:20px;left: 20%;position: absolute;">
 

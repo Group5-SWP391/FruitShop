@@ -4,6 +4,7 @@
  */
 package dal;
 
+import static dal.MyDAO.con;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

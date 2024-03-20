@@ -34,7 +34,7 @@
                 <h5>Login</h5>
                 <form action="LoginController" method="post" >
 
-                    <p>Don't have an account? <a href="Register.jsp">Create Your Account</a> it takes less than a minute</p>
+                    <p>Don't have an account? <a href="RegisterController">Create Your Account</a> it takes less than a minute</p>
                     <div class="inputs">
                         <input type="text" name="email" placeholder="email">
                         <br>
@@ -49,7 +49,7 @@
                         <input type="checkbox" name="item" checked/>
                         <span class="text-checkbox">Remember me</span>
 
-                        <a href="ForgotPassword.jsp" onclick="window.location.href = 'your_target_page.jsp';" style="text-decoration: none; color: #428dfc;">Forgot password ?</a>
+                        <a href="ForgotPasswordController" onclick="window.location.href = 'your_target_page.jsp';" style="text-decoration: none; color: #428dfc;">Forgot password ?</a>
 
                     </div>
 

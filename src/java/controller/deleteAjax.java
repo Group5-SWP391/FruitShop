@@ -59,39 +59,39 @@ public class deleteAjax extends HttpServlet {
 //            emptyCart = "exist";
 //        } else {
         int index = 0;
-        for (ProductList lD : loadDelete) {
-            productCartResultString += "<tr>\n"
-                    + "                                <td class=\"td-id\">" + lD.getProductID() + "</td>\n"
-                    + "                                <td class=\"td-img\">\n"
-                    + "                                    <div class=\"pro-img\">\n"
-                    + "                                        <img src=\"./ProductListImg/" + lD.getImage()+ "\"\n"
-                    + "                                             alt=\"\">\n"
-                    + "                                    </div>\n"
-                    + "                                </td>\n"
-                    + "                                <td class=\"td-name\">" + lD.getProductName()+ "</td>\n"
-                    + "                                <td class=\"td-price\">$" + lD.getMainPrice()+ "</td>\n"
-                    + "                                <td class=\"td-quantity\">\n"
-                    + "                                    <input class='inputs-quantity' type=\"number\" value=\"" + lD.getQuantity()+ "\" name=\"cartQty\" id=\"\" min=\"1\" max=\"\" data-id='" + lD.getProductID()+ "'>\n"
-                    + "                                    <input type=\"hidden\" id=\"productID\" name=\"productId\" value=\"" + lD.getProductID()+ "\">\n"
-                    + "                                </td>\n"
-                    + "                                <td class=\"td-total\">$" + (lD.getMainPrice() * lD.getQuantity())+ "</td>                              \n"
-                    + "                                <td class=\"td-removebtn\">\n"
-                    + "                                    <button onclick=\"loadAfterDelete(" + lD.getProductID()+ ")\"\"><i class=\"fa-solid fa-xmark\"></i></button>\n"
-                    + "                                </td>\n"
-                    + "                            </tr>";
-        }
-        totalCartResultString = "<tr>\n"
-                + "                                    <th>Subtotal</th>\n"
-                + "                                    <th id=\"subtotal\">$" + totalCart + "</th>\n"
-                + "                                </tr>\n"
-                + "                                <tr>\n"
-                + "                                    <th>Delivery</th>\n"
-                + "                                    <th>$0.00</th>\n"
-                + "                                </tr>\n"
-                + "                                <tr>\n"
-                + "                                    <th style=\"font-weight: 600;\">TOTAL</th>\n"
-                + "                                    <th id=\"th-total\">$" + totalCart + "</th>\n"
-                + "                                </tr>";
+            for (ProductList lD : loadDelete) {
+                productCartResultString += "<tr>\n"
+                        + "                                <td class=\"td-id\">" + lD.getProductID() + "</td>\n"
+                        + "                                <td class=\"td-img\">\n"
+                        + "                                    <div class=\"pro-img\">\n"
+                        + "                                        <img src=\"./ProductListImg/" + lD.getImage() + "\"\n"
+                        + "                                             alt=\"\">\n"
+                        + "                                    </div>\n"
+                        + "                                </td>\n"
+                        + "                                <td class=\"td-name\">" + lD.getProductName() + "</td>\n"
+                        + "                                <td class=\"td-price\">$" + lD.getMainPrice() + "</td>\n"
+                        + "                                <td class=\"td-quantity\">\n"
+                        + "                                    <input class='inputs-quantity' type=\"number\" value=\"" + lD.getQuantity() + "\" name=\"cartQty\" id=\"\" min=\"1\" max=\"\" data-id='" + lD.getProductID() + "'>\n"
+                        + "                                    <input type=\"hidden\" id=\"productID\" name=\"productId\" value=\"" + lD.getProductID() + "\">\n"
+                        + "                                </td>\n"
+                        + "                                <td class=\"td-total\">$" + (lD.getMainPrice() * lD.getQuantity()) + "</td>                              \n"
+                        + "                                <td class=\"td-removebtn\">\n"
+                        + "                                    <button onclick=\"loadAfterDelete(" + lD.getProductID() + ")\"\"><i class=\"fa-solid fa-xmark\"></i></button>\n"
+                        + "                                </td>\n"
+                        + "                            </tr>";
+            }
+            totalCartResultString = "<tr>\n"
+                    + "                                    <th>Subtotal</th>\n"
+                    + "                                    <th id=\"subtotal\">$" + totalCart + "</th>\n"
+                    + "                                </tr>\n"
+                    + "                                <tr>\n"
+                    + "                                    <th>Delivery</th>\n"
+                    + "                                    <th>$0.00</th>\n"
+                    + "                                </tr>\n"
+                    + "                                <tr>\n"
+                    + "                                    <th style=\"font-weight: 600;\">TOTAL</th>\n"
+                    + "                                    <th id=\"th-total\">$" + totalCart + "</th>\n"
+                    + "                                </tr>";
 //        }
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("productCartResult", productCartResultString);

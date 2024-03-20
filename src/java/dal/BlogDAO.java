@@ -49,7 +49,7 @@ public class BlogDAO extends MyDAO {
     public List<Blog> listNewBlog() {
         long time = System.nanoTime();
         List<Blog> list = new ArrayList<>();
-        String sql = "Select * from blog order by Time desc limit 2";
+        String sql = "Select * from blog where IsActive = 1 order by Time desc limit 2 ";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -129,11 +129,11 @@ public class BlogDAO extends MyDAO {
     public List<Blog> searchBlog(String key) {
 
         List<Blog> list = new ArrayList();
-        String sql = "SELECT * FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where 1=1 ";
+        String sql = "SELECT * FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where b.IsActive = 1";
         if (key != null && !key.equals("")) {
-            sql += " and b.Title like '% " + key + "%'or b.Content like '%" + key + "%'" + "or c.BlogCateName like '%" + key + "%'";
+            sql += " and (b.Title like '% " + key + "%'or b.Content like '%" + key + "%'" + "or c.BlogCateName like '%" + key + "%')";
         }
-        sql += "order by Time desc";
+        sql += " order by Time desc";
 
         try {
             ps = con.prepareStatement(sql);
@@ -158,11 +158,11 @@ public class BlogDAO extends MyDAO {
 
     public List<Blog> pagingBlog(int index, String key) {
         List<Blog> list = new ArrayList();
-        String sql = "SELECT * FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where 1=1 ";
+        String sql = "SELECT * FROM mydb.blog b  join mydb.blogcategory c on b.CateID = c.BlogCateID where b.IsActive = 1";
         if (key != null && !key.equals("")) {
-            sql += " and b.Title like '% " + key + "%'or b.Content like '%" + key + "%'" + "or c.BlogCateName like '%" + key + "%'";
+            sql += " and (b.Title like '% " + key + "%'or b.Content like '%" + key + "%'" + "or c.BlogCateName like '%" + key + "%')";
         }
-        sql += "LIMIT ?, 2;";
+        sql += " LIMIT ?, 2;";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, (index - 1) * 2);
@@ -308,11 +308,10 @@ public class BlogDAO extends MyDAO {
         }
     }
 
-//    public static void main(String[] args) {
-//
-//        long time = System.nanoTime();
-//        BlogDAO b = new BlogDAO();
-//        System.out.println(b.pagingBlog(1, null));
-//        System.out.println(System.nanoTime() - time);
-//    }
+    public static void main(String[] args) {
+       
+        BlogDAO b = new BlogDAO();
+        System.out.println(b.pagingBlog(2,"Technology"));
+        
+    }
 }

@@ -66,10 +66,7 @@
 
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><b>Admin</b></span>
                 </a>
 
                 <!-- Header Navbar: style can be found in header.less -->
@@ -88,17 +85,17 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px">
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <img src="./img/${sessionScope.acc.accImg}" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">${sessionScope.acc.username}</span>
                                 </a>
                                 <ul class="dropdown-menu"  style="margin-right: 40px">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Alexander Pierce - Web Developer
-
+                                            ${sessionScope.acc.username}
+                                            
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -108,18 +105,16 @@
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
+                                        
 
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Control Sidebar Toggle Button -->
-
+                            
                         </ul>
                     </div>
 
@@ -132,10 +127,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p>${sessionScope.acc.username}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -144,7 +139,7 @@
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="active treeview">
-                            <a href="MKTDashboard.jsp">
+                            <a href="admindashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
 
                             </a>
@@ -152,8 +147,8 @@
                         </li>
 
                         <li>
-                            <a href="#">
-                                <i class="fa fa-th"></i> <span>Manage Post</span>
+                            <a href="userlist">
+                                <i class="fa fa-th"></i> <span>Manage User</span>
                                 <span class="pull-right-container">
                                     <small class="label pull-right bg-green">new</small>
                                 </span>
@@ -161,38 +156,17 @@
                         </li>
 
                         <li>
-                            <a href="sliderlist">
-                                <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Manage Sliders</span>
+                            <a href="adsettinglist">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Manage Setting</span>
                                 <span class="pull-right-container">
                                     <small class="label pull-right bg-green">new</small>
                                 </span>
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-comment" aria-hidden="true"></i> <span>Manage Feedbacks</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
-                            </a>
-                        </li>
+                        
 
-                        <li>
-                            <a href="customerlist">
-                                <i class="fa fa-th"></i> <span>Manage Customers</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
-                            </a>
-                        </li>
-
-
-
-
-
-                        <li><a href="#"><i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Manage Products</span></a></li>
-
+                       
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -450,7 +424,7 @@
                                         var data = {
                                             labels: [<c:forEach var="map" items="${result}">'${map.key}',</c:forEach>],
                                                     datasets: [{
-                                                            label: 'Weekly Sales',
+                                                            label: 'Account Number',
                                                             data: [<c:forEach var="map" items="${result}">${map.value},</c:forEach>],
                                                             backgroundColor: [
                                                                 'rgba(255, 26, 104, 0.2)',

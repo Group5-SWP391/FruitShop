@@ -43,29 +43,26 @@
                                 </li>
 
                                 <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="CartDetailController">Cart</a>
-                                </li>
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Checkout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a href="home" class="navbar_logo">
-                        <img src="./img/logo-img.png" alt="anh logo" />
-                    </a>
-                    <ul class="navbar-list">
-                        <li class="navbar-list-item header__navbar-user">
-                            <a href="Blog">Blog</a>
-                            <ul class="navbar-blog-list">
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Blog List</a>
-                                </li>
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Blog Single</a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <a class="navbar-blog-item-link" href="<c:if test="${sessionScope.acc!=null}">CartDetailController</c:if><c:if test="${sessionScope.acc==null}">LoginController</c:if>">Cart</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="home" class="navbar_logo">
+                            <img src="./img/logo-img.png" alt="anh logo"/>
+                        </a>
+                        <ul class="navbar-list">
+                            <li class="navbar-list-item header__navbar-user">
+                                <a href="#">Blog</a>
+                                <ul class="navbar-blog-list">
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="Blog">Blog List</a>
+                                    </li>
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Blog Single</a>
+                                    </li>
+                                </ul>
+                            </li>
                         <c:if test="${sessionScope.acc==null}">
                             <li class="navbar-list-item">
                                 <a href="LoginController">Login</a>
@@ -73,12 +70,14 @@
                         </c:if>
                         <c:if test="${sessionScope.acc!=null}">
                             <li class="navbar-list-item header__navbar-user">
-                                <!--                            <img src="./assest/img/${sessionScope.acc.accImg}" class="account-logo" alt="123"/>-->
+    <!--                            <img src="./assest/img/${sessionScope.acc.accImg}" class="account-logo" alt="123"/>-->
                                 <a href="#" class="account-name">${sessionScope.acc.username}</a>
                                 <ul class="header__navbar-user-menu">
                                     <li class="header__navbar-user-item">
-                                        <a href="userprofile?id=${sessionScope.acc.getAccID()}"
-                                           class="header__navbar-user-item-link">Profile</a>
+                                        <a href="userprofile?id=${sessionScope.acc.getAccID()}" class="header__navbar-user-item-link">Profile</a>
+                                    </li>
+                                    <li class="header__navbar-user-item">
+                                        <a href="myorder" class="header__navbar-user-item-link">My Order</a>
                                     </li>
                                     <li class="header__navbar-user-item header__navbar-user-item--separate">
                                         <a href="logout" class="header__navbar-user-item-link">Logout</a>
@@ -87,6 +86,7 @@
                             </li>
                         </c:if>
                     </ul>
+
                 </nav>
             </div>
         </section>
@@ -201,21 +201,21 @@
             </div>
 
             <div class="cart-container">
-                <table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th>Product name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="productCartContentTable">
-                        <c:forEach var="ct" items="${cartList}" varStatus="i">
+                    <table <c:if test="${empty cartList}">style="display: none;"</c:if> class="cart-table">
+                        <thead>
                             <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="productCartContentTable">
+                        <c:forEach var="ct" items="${cartList}" varStatus="i">
+                            <tr id="pr">
                                 <td class="td-id">${ct.getProductID()}</td>
                                 <td class="td-img">
                                     <div class="pro-img">
@@ -239,8 +239,8 @@
                 </table>
 
                 <div class="bottom-container">
-                    <button onclick="window.location.href = 'ProductListController'" class="morebtn"><span>Choose more Product</span></button>
-                    <div class="checkout-box">
+                    <button <c:if test="${empty cartList}">style="display: none;"</c:if> onclick="window.location.href = 'ProductListController'" class="morebtn"><span>Choose more Product</span></button>
+                    <div <c:if test="${empty cartList}">style="display: none;"</c:if> class="checkout-box">
                         <table class="total-table">
                             <thead>
                                 <tr>
@@ -266,70 +266,71 @@
                         <button onclick="window.location.href = 'cart-contact'" class="checkoutBtn"><span>Proceed to Checkout</span></button>
                     </div>
                 </div>
-                <!--                <div style = "margin-top: 5rem;
-                                     width: 100%;
-                                     display: flex;
-                                     flex-direction: column;
-                                     gap: 2rem;
-                                     align-items: center" class="emptyCartBox">                                    
-                                    <h2 style="font-weight: 300; font-size: 3rem">Your shopping cart currently has no products</h2>
-                                    <button onclick="window.location.href = 'ProductListController'" class="morebtn"><span>Choose more Product</span></button>
-                                </div>-->
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div class="grid wide">
-                <div class="row">
-
-                    <div class="col l-5">
-                        <div class="footer-intro">
-                            <img src="./assets/img/logo-footer.png" alt="alt" />
-                            <p class="footer-intro-des">Maecenas mi justo, interdum at consectetur vel, tristique et
-                                arcu.
-                                Ut quis eros blandit, ultrices diam in, elementum ex. Suspendisse quis faucibus urna.
-                                Suspendisse pellentesque.</p>
-                        </div>
-                    </div>
-                    <div class="col l-3">
-                        <div class="footer-link">
-                            <h1 class="footer-link-heading">Quick Links</h1>
-                            <ul class="footer-link-list">
-                                <li class="footer-link-item">
-                                    <a href="#">About</a>
-                                </li>
-                                <li class="footer-link-item">
-                                    <a href="#">About</a>
-                                </li>
-                                <li class="footer-link-item">
-                                    <a href="#">About</a>
-                                </li>
-                                <li class="footer-link-item">
-                                    <a href="#">About</a>
-                                </li>
-                                <li class="footer-link-item">
-                                    <a href="#">About</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col l-4">
-                        <div class="footer-download">
-                            <h1 class="footer-download-heading">Download Our Mobile App</h1>
-                            <p class="footer-download-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec
-                                aliquam gravida sollicitudin. Praesent porta enim mi, non tincidunt libero interdum sit
-                                amet.</p>
-                        </div>
+                <div <c:if test="${empty cartList}">style="display: flex; flex-direction: column; justify-content: center; align-items: center;"</c:if> id="emptyCart" style = "margin-top: 5rem;
+                        width: 100%;
+                        /*display: flex;*/
+                        display: none;
+                        flex-direction: column;
+                        gap: 2rem;
+                        align-items: center" class="emptyCartBox">                                    
+                        <h2 style="font-weight: 300; font-size: 3rem">Your shopping cart currently has no products</h2>
+                        <button onclick="window.location.href = 'ProductListController'" class="morebtn"><span>Choose more Product</span></button>
                     </div>
                 </div>
-            </div>
-            <div class="footer-copyright">
+            </section>
+
+            <footer class="footer">
                 <div class="grid wide">
-                    <h1 class="copyright-text">Copyright © 2024 | Organic Store</h1>
+                    <div class="row">
+
+                        <div class="col l-5">
+                            <div class="footer-intro">
+                                <img src="./assets/img/logo-footer.png" alt="alt" />
+                                <p class="footer-intro-des">Maecenas mi justo, interdum at consectetur vel, tristique et
+                                    arcu.
+                                    Ut quis eros blandit, ultrices diam in, elementum ex. Suspendisse quis faucibus urna.
+                                    Suspendisse pellentesque.</p>
+                            </div>
+                        </div>
+                        <div class="col l-3">
+                            <div class="footer-link">
+                                <h1 class="footer-link-heading">Quick Links</h1>
+                                <ul class="footer-link-list">
+                                    <li class="footer-link-item">
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li class="footer-link-item">
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li class="footer-link-item">
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li class="footer-link-item">
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li class="footer-link-item">
+                                        <a href="#">About</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col l-4">
+                            <div class="footer-download">
+                                <h1 class="footer-download-heading">Download Our Mobile App</h1>
+                                <p class="footer-download-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Donec
+                                    aliquam gravida sollicitudin. Praesent porta enim mi, non tincidunt libero interdum sit
+                                    amet.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </footer>
-        <script src="JS/CartDetail.js"></script>
-    </body>
-</html>
+                <div class="footer-copyright">
+                    <div class="grid wide">
+                        <h1 class="copyright-text">Copyright © 2024 | Organic Store</h1>
+                    </div>
+                </div>
+            </footer>
+            <script src="JS/CartDetail.js"></script>
+        </body>
+    </html>

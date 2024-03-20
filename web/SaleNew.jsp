@@ -62,14 +62,11 @@
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
 
-            <header class="main-header">
+              <header class="main-header">
 
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><b>Marketing</b></span>
                 </a>
 
                 <!-- Header Navbar: style can be found in header.less -->
@@ -88,16 +85,16 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px">
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <img src="./img/${sessionScope.acc.accImg}" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">${sessionScope.acc.username}</span>
                                 </a>
                                 <ul class="dropdown-menu"  style="margin-right: 40px">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Alexander Pierce - Web Developer
+                                            ${sessionScope.acc.username}
                                             
                                         </p>
                                     </li>
@@ -108,12 +105,10 @@
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
-                                        <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
+                                        
 
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -132,10 +127,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="./img/user1_image.jpg" class="img-circle" alt="User Image" style="object-fit: cover;width: 40px;height: 40px;">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p style="color: white">Alexander Pierce</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -144,54 +139,18 @@
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="active treeview">
-                            <a href="MKTDashboard.jsp">
+                            <a href="SaleDashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-
-                            </a>
-
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-th"></i> <span>Manage Post</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
                             </a>
                         </li>
 
-                        <li>
-                            <a href="sliderlist">
-                                <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Manage Sliders</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
+                        <li class="">
+                            <a href="OrderList">
+                                <i class="fa fa-th"></i> <span>Order List</span>
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-comment" aria-hidden="true"></i> <span>Manage Feedbacks</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-th"></i> <span>Manage Customers</span>
-                                <span class="pull-right-container">
-                                    <small class="label pull-right bg-green">new</small>
-                                </span>
-                            </a>
-                        </li>
-
-
-
-
-
-                        <li><a href="#"><i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Manage Products</span></a></li>
+                        
 
                     </ul>
                 </section>

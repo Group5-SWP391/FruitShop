@@ -47,9 +47,6 @@
                                 <li class="navbar-blog-list-item">
                                     <a class="navbar-blog-item-link" href="<c:if test="${sessionScope.acc!=null}">CartDetailController</c:if><c:if test="${sessionScope.acc==null}">LoginController</c:if>">Cart</a>
                                     </li>
-                                    <li class="navbar-blog-list-item">
-                                        <a class="navbar-blog-item-link" href="url">Checkout</a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -58,10 +55,10 @@
                         </a>
                         <ul class="navbar-list">
                             <li class="navbar-list-item header__navbar-user">
-                                <a href="Blog">Blog</a>
+                                <a href="#">Blog</a>
                                 <ul class="navbar-blog-list">
                                     <li class="navbar-blog-list-item">
-                                        <a class="navbar-blog-item-link" href="url">Blog List</a>
+                                        <a class="navbar-blog-item-link" href="Blog">Blog List</a>
                                     </li>
                                     <li class="navbar-blog-list-item">
                                         <a class="navbar-blog-item-link" href="url">Blog Single</a>
@@ -80,6 +77,9 @@
                                 <ul class="header__navbar-user-menu">
                                     <li class="header__navbar-user-item">
                                         <a href="userprofile?id=${sessionScope.acc.getAccID()}" class="header__navbar-user-item-link">Profile</a>
+                                    </li>
+                                    <li class="header__navbar-user-item">
+                                        <a href="myorder" class="header__navbar-user-item-link">My Order</a>
                                     </li>
                                     <li class="header__navbar-user-item header__navbar-user-item--separate">
                                         <a href="logout" class="header__navbar-user-item-link">Logout</a>
@@ -105,7 +105,7 @@
                     <div class="category">
                         <h3>Categories</h3>
                         <c:forEach var="c" items="${cateList}">
-                            <span><a href="ProductListController?cate=${c.getCateName()}">${c.getCateName()}</a> (${c.getQuantity()})</span>
+                            <span><a href="ProductListController?cate=${c.getCateName()}">${c.getCateName()}</a></span>
                         </c:forEach>
                     </div>
                     <div class="star-rating-sider">
@@ -217,7 +217,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="products">
+                            <div <c:if test="${empty products}">style="display: flex; align-items: center; justify-content: center; font-size: 3rem; width: 100%; margin: auto;"</c:if><c:if test="${!empty products}">style="display: none;"</c:if>>
+                                <h1>Product does not exist</h1>
+                            </div>
+                    <div class="products">               
                     <c:forEach var="p" items="${products}">
                         <div class="product">
                             <div class="image">
@@ -246,7 +249,6 @@
                                 </div>
                             </div>
                             <div class="add-cart-box">
-<!--                                <button class="add-cart-btn" onclick=<c:if test="${sessionScope.acc!=null}">"addCart(${p.getProductID()})"</c:if> <c:if test="${sessionScope.acc==null}"></c:if> ><i class="fa-solid fa-cart-arrow-down"></i> <span>Add to cart</span></button>-->
                                 <button class="add-cart-btn" onclick="addCart(${p.getProductID()})"><i class="fa-solid fa-cart-arrow-down"></i> <span>Add to cart</span></button>
                             </div>
                         </div>  

@@ -18,6 +18,8 @@ import model.Categories;
 import model.ProductList;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
+import model.FbProDEtai;
+import model.Feedback;
 
 /**
  *
@@ -88,11 +90,14 @@ public class ProductDetailController extends HttpServlet {
             return;
         } catch (Exception e) {
         }
-
+        
+        List<FbProDEtai> f = daoPd.listFeedback(ProductId);
         ProductList p = daoPd.getProductDetail(ProductId);
         List<Categories> listc = (ArrayList<Categories>) daop.getAllCate();
         List<ProductList> list3p = (ArrayList<ProductList>) daop.getNewest3Product();
 
+        request.setAttribute("countF", f.size());
+        request.setAttribute("listf", f);
         request.setAttribute("newest3products", list3p);
         request.setAttribute("cateList", listc);
         request.setAttribute("productDetail", p);

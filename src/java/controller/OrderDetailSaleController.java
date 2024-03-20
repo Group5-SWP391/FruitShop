@@ -103,7 +103,11 @@ public class OrderDetailSaleController extends HttpServlet {
         OrderDAO dao = new OrderDAO();
         int saleId = dao.getsaleIdbyName(salerName);
         dao.updateSaleIdAndStatus(orderID, saleId, statusID);
-        response.sendRedirect("OrderList");
+        if(statusID == 4){
+            response.sendRedirect("mailfeeback?orderID="+orderID);
+        }else{
+            response.sendRedirect("OrderList");
+        }
     }
 
     /** 

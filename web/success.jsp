@@ -94,8 +94,8 @@
     <div class="countdown-card">
         <i class="icon fas fa-apple-alt"></i> <!-- Icon táo -->
         <h1>Successfully</h1>
-        <p id="countdown">Automatically redirect to the page <a href='Login.jsp'>Login</a> after <span id="count"></span> seconds</p>
-        <button onclick="window.location.href = 'Login.jsp'">OK</button>
+        <p id="countdown">Automatically redirect to the page <a href='LoginController'>Login</a> after <span id="count"></span> seconds</p>
+        <button onclick="window.location.href = 'LoginController'">OK</button>
     </div>
     <script>
         function countDown() {
@@ -112,7 +112,7 @@
                         updateCountdown();
                         if (count <= 0) {
                             clearInterval(countdownInterval);
-                            window.location.href = "Login.jsp";
+                            window.location.href = "LoginController";
                         }
                     }, 1000);
             }

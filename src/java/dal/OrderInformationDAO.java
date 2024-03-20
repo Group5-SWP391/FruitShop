@@ -77,7 +77,7 @@ public class OrderInformationDAO extends MyDAO {
         return null;
     }
       public OrderDTO FeedbackedOrder(String id) {
-        String sql = "update mydb.order set Status = 11 where OrderID = " + id;
+        String sql = "update mydb.order set Status = 3 where OrderID = " + id;
         try {
             connection = new DBContext().getConnection();
             PreparedStatement st = connection.prepareStatement(sql);

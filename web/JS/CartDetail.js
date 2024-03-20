@@ -48,8 +48,13 @@ function loadAfterDelete(id) {
             var data = JSON.parse(result);
             var productCartResult = data.productCartResult;
             var totalCartResult = data.totalCartResult;
-            productCartContent.innerHTML = productCartResult;
-            totalCartContent.innerHTML = totalCartResult;
+            if (Object.keys(data).length === 0) {
+                document.getElementsByClassName("cart-table").style.display = "none";
+                document.getElementsByClassName("bottom-container").style.display = "none";
+            } else {
+                productCartContent.innerHTML = productCartResult;
+                totalCartContent.innerHTML = totalCartResult;
+            }
             attachChangeEvents();
         },
         error: function (xhr) {
@@ -57,4 +62,3 @@ function loadAfterDelete(id) {
         }
     });
 }
-

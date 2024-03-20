@@ -258,6 +258,23 @@ public class OrderDAO extends MyDAO {
         return null;
     }
     
+    public Order get1OrderbyOrderID(int oid){
+        String sql = "Select * from mydb.order where OrderID = ?";
+        AccDAO a = new AccDAO();
+        try {
+            ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, oid);
+            rs = ps.executeQuery();
+            while (rs.next()) { 
+                Order o = new Order(rs.getInt("OrderID"), getProductbyOrderID(rs.getInt("OrderID")),a.getAccByID(rs.getInt("AccID")) ,rs.getInt("status"), quantity(rs.getInt("OrderID")),Price(rs.getInt("OrderID")),rs.getDouble("TotalPrice"),rs.getTimestamp("Date").toLocalDateTime());
+                return o;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
     public List<Order> OrderPaging(int index,int id){
         String sql = "SELECT * FROM mydb.order where Status != 2 and AccID = ? order by Date desc limit ? offset ?";
         List<Order> list = new ArrayList<>();
@@ -312,6 +329,7 @@ public class OrderDAO extends MyDAO {
         }
         return listP;
     }
+    
     
     
     public List quantity(int id){
@@ -395,7 +413,7 @@ public class OrderDAO extends MyDAO {
     public static void main(String[] args) {
         OrderDAO dao = new OrderDAO();
         
-        System.out.println(dao.getOrderbyProductID(1, 6));
+        System.out.println(dao.get1OrderbyOrderID(6).getAccount().getEmail());
 
     }
 }

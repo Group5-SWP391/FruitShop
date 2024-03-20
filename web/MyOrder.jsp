@@ -224,7 +224,7 @@
                                     <span>Time: <%=oList.get(i).getTime()%></span>
                                     <span>Total: <%=oList.get(i).getTotalPrice()%>$</span>
                                 </div> 
-                                <div class="order-item">
+                                <div class="order-item" onclick="window.location.href = 'OrderInformation?oid='+<%=oList.get(i).getOrderID()%>">
                                     <h3 class="order-item-id"><%=oList.get(i).getOrderID()%></h3>
                                     <div class="img-hover">
                                         <img class="item-product-img" src="./ProductListImg/<%=oList.get(i).getProducts().get(0).getImage()%>" alt="alt"/>
@@ -265,7 +265,7 @@
 
 
 
-                                <ul class="order-list-treeview">
+                                <ul class="order-list-treeview" onclick="window.location.href = 'OrderInformation?oid='+<%=oList.get(i).getOrderID()%>">
 
                                     <% 
                                       for (int a = 1; a < oList.get(i).getProducts().size(); a++) { 

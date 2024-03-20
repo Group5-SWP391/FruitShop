@@ -18,7 +18,7 @@ public class ProductListDAO extends MyDAO {
     public List<Categories> getAllCate() {
         try {
             String sql = "select c.CateID, c.IsActive, c.CateName, COALESCE(count(p.CateID), 0) as count\n"
-                    + "from mydb.product p right join mydb.category c on p.CateID = c.CateID\n"
+                    + "from mydb.product p right join mydb.category c on p.CateID = c.CateID \n"
                     + "group by c.CateName, c.CateID";
             con = new DBContext().getConnection();
             ps = con.prepareStatement(sql);

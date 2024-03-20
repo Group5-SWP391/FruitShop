@@ -22,6 +22,8 @@
         <link rel="stylesheet" href="./css/ProductList/side-bar.css">
         <link rel="stylesheet" href="./css/ProductListcss/product-list.css">
         <link rel="stylesheet" href="./css/ProductList/navbar-footer.css"/>
+                <link rel="stylesheet" href="./css/ProductList/content.css">
+
         <link rel="stylesheet" href="./css/Home/grid.css">
         <link rel="stylesheet" href="./css/Home/bass.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -222,12 +224,12 @@
                         <p><b>Phone:</b>${o.account.phone}</p>
                         <p><b>Address:</b>${o.account.address}</p>
                     </div>
-                        <c:if test="${o.status eq 'Processing'}">
+                        <c:if test="${o.status eq 'WaitConfirm'}">
                     <div>
                         <a class="btn btn-danger" onclick="checkCF(${o.oid})">Cancel</a>
                     </div>
                     </c:if>
-                        <c:if test="${o.status eq 'Cancelled'||o.status eq 'Completed' || o.status eq 'Feedbacked'}">
+                        <c:if test="${o.status eq 'Cancelled'||o.status eq 'Completed' || o.status eq 'Shipped'}">
                     <div>
                         <a class="btn btn-danger" href="ProductDetailController?productId=${o.oid}">Re buy</a>
                     </div>
@@ -260,16 +262,16 @@
                             <c:forEach var="a" items="${od}">
                                 <tr>
                                     <td>${a.product.productID}</td>
-                                    <td><a href="ProductDetailController?productId=${o.oid}" style="text-decoration: none;">${a.product.productName}</a></td>
+                                    <td><a href="ProductDetailController?productId=${a.product.productID}" style="text-decoration: none;">${a.product.productName}</a></td>
                                     <td><img src="./ProductListImg/${a.product.image}" width="150px" alt="alt"/></td>
                                     <td>${a.product.category.cateName}</td>
                                     <td>${a.quantity}</td>
                                     <td>${a.price}</td>
-                                    <c:if test="${o.status eq 'Completed'}">
-                                    <td><a href="feedbackform?productID=${o.oid}" class="btn btn-primary">Feedback</a></td>
+                                    <c:if test="${o.status eq 'Shipped'}">
+                                    <td><a href="feedbackform?productID=${a.product.productID}&orderID=${o.oid}" class="btn btn-primary">Feedback</a></td>
                                     </c:if>
-                                    <c:if test="${o.status eq 'Feedbacked'}">
-                                    <td><a href="ProductDetailController?productId=${o.oid}" class="btn btn-primary">View Feedback</a></td>
+                                    <c:if test="${o.status eq 'Completed'}">
+                                    <td><a href="ProductDetailController?productId=${a.product.productID}" class="btn btn-primary">View Feedback</a></td>
                                     </c:if>
                                 </tr>
                             </c:forEach>

@@ -265,60 +265,134 @@
 
                                             <div class="row justify-content-between">
                                                 <div class="col-auto"><p class="mb-1 text-dark cus-fontsize"><b>Order Details</b></p></div>
-                                                <div class="col-auto">
-                                                    Trạng thái
-                                                    <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
-                                                        <option value="1"${status=="Wait_Confirm"?"Selected":""} >
-                                                            Wait Confirm
-                                                        </option>
-                                                        <option value="3"  ${status=="Completed"?"Selected":""}>
-                                                            Completed
-                                                        </option>
-                                                        <option value="4" ${status=="Shipped"?"Selected":""}>
-                                                            Shipped
-                                                        </option>
-                                                        <option value="9" ${status=="Cancelled"?"Selected":""}>
-                                                            Cancelled
-                                                        </option>
-
-                                                    </select>
-                                                </div>
-
-
-                                                <div class="col-auto">
-                                                    Người bán hàng
-                                                    <select class="form-control"  name="salerName" aria-label="Default select example" >
-                                                        <c:forEach var="sale" items="${saleList}">
-                                                            <option value="${sale.username}"  ${sale.username==saleName?"Selected":""} >
-                                                                ${sale.username}
+                                                <c:if test="${status=='Wait_Confirm'}">
+                                                    <div class="col-auto">
+                                                        Status
+                                                        <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
+                                                            <option value="1"${status=="Wait_Confirm"?"Selected":""} >
+                                                                Wait Confirm
                                                             </option>
-                                                        </c:forEach>
+                                                            <option value="3"  ${status=="Completed"?"Selected":""}>
+                                                                Completed
+                                                            </option>
+                                                            <option value="4" ${status=="Shipped"?"Selected":""}>
+                                                                Shipped
+                                                            </option>
+                                                            <option value="9" ${status=="Cancelled"?"Selected":""}>
+                                                                Cancelled
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${status=='Shipped'}">
+                                                    <div class="col-auto">
+                                                        Status
+                                                        <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
+                                                            <option value="4" ${status=="Shipped"?"Selected":""}>
+                                                                Shipped
+                                                            </option>
+                                                            <option value="3"  ${status=="Completed"?"Selected":""}>
+                                                                Completed
+                                                            </option>
+
+                                                            <option value="9" ${status=="Cancelled"?"Selected":""}>
+                                                                Cancelled
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${status=='Completed'}">
+                                                    <div class="col-auto">
+                                                        Status
+                                                        <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
+
+                                                            <option value="3"  ${status=="Completed"?"Selected":""}>
+                                                                Completed
+                                                            </option>
 
 
-                                                    </select>
-                                                </div>
 
-                                                
+                                                        </select>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${status=='Cancelled'}">
+                                                    <div class="col-auto">
+                                                        Status
+                                                        <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
+
+
+
+                                                            <option value="9" ${status=="Cancelled"?"Selected":""}>
+                                                                Cancelled
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+
+                                                </c:if>
+
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.acc.role.roleID == 5}">
+                                                        <div class="col-auto">
+                                                            Saller
+                                                            <select class="form-control"  name="salerName" aria-label="Default select example" >
+
+                                                                <c:forEach var="sale" items="${saleList}">
+                                                                    <option value="${sale.username}"  ${sale.username==saleName?"Selected":""} >
+                                                                        ${sale.username}
+                                                                    </option>
+                                                                </c:forEach>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="col-auto">
+                                                            Saller
+                                                            <select class="form-control"  name="salerName" aria-label="Default select example" >
+
+                                                                <option value="${saleName}" Selected >
+                                                                    ${saleName}
+                                                                </option>
+
+
+
+                                                            </select>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
+
+
+
+
+
+
+
                                             </div>
-                                            
-                                            
+
+
                                             <div class="row justify-content-between">
-                                                <div class="flex-sm-col text-left col-lg-4"> <p class="mb-1 cus-fontsize me-2"><b>Nguoi mua</b></p> </div>
+                                                <div class="flex-sm-col text-left col-lg-4"> <p class="mb-1 cus-fontsize me-2"><b>Buyer</b></p> </div>
                                                 <div class="flex-sm-col col-lg-8 text-left"> <p class="mb-1 cus-fontsize">${orderDetail.username}</p> </div>
 
                                             </div>
-                                            
-                                            
-                                            
+
+
+
                                             <div class="row justify-content-between">
-                                                <div class="flex-sm-col text-left col-lg-4"><p class="mb-1 cus-fontsize"> <b>Số điện thoại</b></p> </div>
+                                                <div class="flex-sm-col text-left col-lg-4"><p class="mb-1 cus-fontsize"> <b>Phone Number</b></p> </div>
                                                 <div class="flex-sm-col col-lg-8 text-left"><p class="mb-1 cus-fontsize">${orderDetail.phone}</p></div>
 
                                             </div>
 
 
                                             <div class="row justify-content-between">
-                                                <div class="flex-sm-col text-left col-lg-4"><p class="mb-1 cus-fontsize me-5"><b>Địa chỉ</b></p></div>
+                                                <div class="flex-sm-col text-left col-lg-4"><p class="mb-1 cus-fontsize me-5"><b>Address</b></p></div>
                                                 <div class="flex-sm-col col-lg-8 text-left"><p class="mb-1 cus-fontsize">${orderDetail.address}</p></div>
                                             </div>
                                             <div class="row justify-content-between">
@@ -333,9 +407,9 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4 justify-content-between">
-                                            <p class="flex-sm-col text-left col-lg-4"> OrderId:${orderId}</p>
-                                            <p class="flex-sm-col col-lg-8 text-left">Ngày mua hàng :${orderDetail.orderDate} </p></div>
-                                   
+                                        <p class="flex-sm-col text-left col-lg-4"> OrderId:${orderId}</p>
+                                        <p class="flex-sm-col col-lg-8 text-left">Ngày mua hàng :${orderDetail.orderDate} </p></div>
+
                             </div>
                             <div class="card-footer">
                                 <div class="jumbotron-fluid">

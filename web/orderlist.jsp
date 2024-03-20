@@ -20,49 +20,64 @@
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <header class="main-header">
-            <!-- Logo -->
-            <a href="index2.html" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>A</b>LT</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
-            </a>
+         <header class="main-header">
 
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top">
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
+                <!-- Logo -->
+                <a href="index2.html" class="logo">
+                    <span class="logo-lg"><b>Marketing</b></span>
+                </a>
 
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px"> 
-                                <img src="./img/user1_image.jpg" class="user-image" alt="User Image" style="object-fit: cover;">
-                                <span class="hidden-xs">Alexander Pierce</span>
-                            </a>
-                            <ul class="dropdown-menu" style="margin-right: 40px">
-                                <!-- User image -->
-                                <li class="user-header" style="height: inherit;">
-                                    <img src="./img/user1_image.jpg" class="img-circle" alt="User Image" style="object-fit: cover;width: 40px;height: 40px;">
-                                    <p>
-                                        Alexander Pierce
-                                    </p>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+
+
+
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="align-items: center;display: flex;margin-right: 60px">
+                                    <img src="./img/${sessionScope.acc.accImg}" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">${sessionScope.acc.username}</span>
+                                </a>
+                                <ul class="dropdown-menu"  style="margin-right: 40px">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="./img/${sessionScope.acc.accImg}" class="img-circle" alt="User Image">
+
+                                        <p>
+                                            ${sessionScope.acc.username}
+                                            
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        
+
+                                        <div class="pull-right">
+                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                            
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
 
         <div class="row">
             <c:if test="${param['index']==null }">   
@@ -89,22 +104,18 @@
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="">
-                            <a href="#">
+                            <a href="SaleDashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
 
                         <li class="active treeview">
-                            <a href="userlist">
-                                <i class="fa fa-th"></i> <span>User List</span>
+                            <a href="OrderList">
+                                <i class="fa fa-th"></i> <span>Order List</span>
                             </a>
                         </li>
 
-                        <li class="">
-                            <a href="settinglist">
-                                <i class="fa fa-gear" aria-hidden="true"></i> <span>Setting List</span>
-                            </a>
-                        </li>
+                       
 
                     </ul>
                 </section>
@@ -136,8 +147,8 @@
                                 <label for="gender-filter">Status:</label>
                                 <select id="gender-filter" name="status" >
                                     <option value="-1"${(param.status=="-1")?"selected":""}>All </option>
-                                    <option value="1" ${(param.status=="1")?"selected":""}>Active</option>
-                                    <option value="0" ${(param.status=="0")?"selected":""}>Inactive</option>
+                                    <option value="1" ${(param.status=="1")?"selected":""}>Wait Confirm</option>
+<!--                                    <option value="0" ${(param.status=="0")?"selected":""}>Inactive</option>-->
                                 </select>
                             </div>
 
@@ -198,21 +209,27 @@
                     <div class="paging">
                         <ul class="page-list">
                             <li class="onclick">
-                                <a href="./OrderList?index=1&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}"><i class="fa-solid fa-angles-left"></i></a>
+                                <a style="line-height: 40px;
+    width: 40px " href="./OrderList?index=1&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}"><i class="fa-solid fa-angles-left"></i></a>
                             </li>      
                             <c:forEach var="i" begin="1" end="${totalPage}">
                                 <li class="${(index == i)?" notclick":"onclick"}">
-                                    <a href="./OrderList?index=${i}&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}">${i}</a>
+                                    <a style="line-height: 40px;
+    width: 40px " href="./OrderList?index=${i}&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}">${i}</a>
                                 </li>
                             </c:forEach>
                             <li class="onclick">
-                                <a href="./OrderList?index=${totalPage}&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}"><i class="fa-solid fa-angles-right"></i></a>
+                                <a style="line-height: 40px;
+    width: 40px "href="./OrderList?index=${totalPage}&orderDateFrom=${param.orderDateFrom}&orderDateTo=${param.orderDateTo}&saleName=${param.saleName}&status=${param.status==null||param.status==""?"-1":param.status}&searchQuery=${param.searchQuery}&sortBy=${param.sortBy}"><i class="fa-solid fa-angles-right"></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-U9Yi14bGYPMjYfJAZGuh6o3JODvw/+T2BE6ZU7izjKT1VaVZfU9R8IBqweNkOF1d" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </body>
 </html>

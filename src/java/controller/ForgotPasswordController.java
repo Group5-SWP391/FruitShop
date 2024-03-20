@@ -34,7 +34,10 @@ public class ForgotPasswordController extends HttpServlet {
 
     // Lưu trữ mã OTP và thời gian hết hạn của nó
      private static final Map<String, Long> resetTokenMap = new HashMap<>();
-
+     
+     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+         request.getRequestDispatcher("ForgotPassword.jsp").forward(request, response);
+     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");

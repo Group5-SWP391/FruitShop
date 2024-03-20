@@ -71,9 +71,6 @@
                             <li class="navbar-blog-list-item">
                                 <a class="navbar-blog-item-link" href="<c:if test="${sessionScope.acc!=null}">CartDetailController</c:if><c:if test="${sessionScope.acc==null}">LoginController</c:if>">Cart</a>
                                 </li>
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Checkout</a>
-                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -94,7 +91,7 @@
                         </li>
                     <c:if test="${sessionScope.acc==null}">
                         <li class="navbar-list-item">
-                            <a href="Login.jsp">Login</a>
+                            <a href="LoginController">Login</a>
                         </li>
                     </c:if>
                     <c:if test="${sessionScope.acc!=null}">

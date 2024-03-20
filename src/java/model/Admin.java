@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author MM
@@ -49,7 +51,8 @@ public class Admin {
     }
 
     public double getTotal() {
-        return total;
+        DecimalFormat df = new DecimalFormat("0.00");
+        return Double.parseDouble(df.format(total));
     }
 
     public void setTotal(double total) {

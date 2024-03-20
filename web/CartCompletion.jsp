@@ -42,28 +42,25 @@
 
                                 <li class="navbar-blog-list-item">
                                     <a class="navbar-blog-item-link" href="<c:if test="${sessionScope.acc!=null}">CartDetailController</c:if><c:if test="${sessionScope.acc==null}">LoginController</c:if>">Cart</a>
-                                </li>
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Checkout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a href="home" class="navbar_logo">
-                        <img src="./img/logo-img.png" alt="anh logo"/>
-                    </a>
-                    <ul class="navbar-list">
-                        <li class="navbar-list-item header__navbar-user">
-                            <a href="Blog">Blog</a>
-                            <ul class="navbar-blog-list">
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Blog List</a>
-                                </li>
-                                <li class="navbar-blog-list-item">
-                                    <a class="navbar-blog-item-link" href="url">Blog Single</a>
-                                </li>
-                            </ul>
-                        </li>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="home" class="navbar_logo">
+                            <img src="./img/logo-img.png" alt="anh logo"/>
+                        </a>
+                        <ul class="navbar-list">
+                            <li class="navbar-list-item header__navbar-user">
+                                <a href="#">Blog</a>
+                                <ul class="navbar-blog-list">
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="Blog">Blog List</a>
+                                    </li>
+                                    <li class="navbar-blog-list-item">
+                                        <a class="navbar-blog-item-link" href="url">Blog Single</a>
+                                    </li>
+                                </ul>
+                            </li>
                         <c:if test="${sessionScope.acc==null}">
                             <li class="navbar-list-item">
                                 <a href="LoginController">Login</a>
@@ -77,6 +74,9 @@
                                     <li class="header__navbar-user-item">
                                         <a href="userprofile?id=${sessionScope.acc.getAccID()}" class="header__navbar-user-item-link">Profile</a>
                                     </li>
+                                    <li class="header__navbar-user-item">
+                                        <a href="myorder" class="header__navbar-user-item-link">My Order</a>
+                                    </li>
                                     <li class="header__navbar-user-item header__navbar-user-item--separate">
                                         <a href="logout" class="header__navbar-user-item-link">Logout</a>
                                     </li>
@@ -84,6 +84,7 @@
                             </li>
                         </c:if>
                     </ul>
+
                 </nav>
             </div>
         </section>
@@ -206,7 +207,7 @@
                     </div> 
                     <h2 class="sendMtitle">We'll email you an order confirmation with details and tracking info</h2>
                     <button class="shopBtn" onclick="window.location.href = 'home'">Continue Shopping</button>
-                    <span class="orderTitle">Your order is saved at <a href="">My Orders</a></span>
+                    <span class="orderTitle">Your order is saved at <a href="myorder">My Orders</a></span>
                 </div>
             </div>
         </section>

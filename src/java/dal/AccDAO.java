@@ -237,6 +237,7 @@ public class AccDAO extends MyDAO {
     
     public static void main(String[] args) {
         AccDAO acc = new AccDAO();
-        System.out.println(acc.toSHA1("password"));
+        List lmao = acc.getAccSale();
+        System.out.println(lmao);
     }
 }

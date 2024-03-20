@@ -15,7 +15,7 @@ import model.Status;
 public class RegisterDAO extends MyDAO{
     public void signUp(String email, String pass,String username) {
         String sql = "INSERT INTO mydb.account (RoleID, Status, Gender, Email, Password, Username, AccImg,Phone,Address,Time) VALUES\n" +
-"(2,7,1, ?, ?, ?,'user1_image.jpg','null','null',NOW())";
+"(2,7,1, ?, ?, ?,'user1_image.jpg',' ',' ',NOW())";
         try {
             con = new DBContext().getConnection();//mo ket noi voi sql
             ps = con.prepareStatement(sql);
